@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Contacts List</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+        <!-- custom script to show contact details when clicked on row -->
+        <script type="application/javascript" >
+            $(document).ready(function(){
+                //jQuery function to get details of row item
+                $("#contacts tr").click(function(){
+                    var url = "/ContactInfo?fname="+$(this).data("fname")+"&lname="+$(this).data("lname")+"&mob="+$(this).data("mob");
+                    $(location).attr('href',url); //redirect to contact info page with parameters
+                });
+            })
+        </script>
+	</head>
+	<body>
+        <!-- Static navigation bar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Contacts App</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Contacts List</a></li>
+                    <li><a href="/MessageHistory">Message History</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h1 align="center">Contacts List</h1>
+
+            <!-- Table to display contacts names-->
+            <div align="center" style="width: 20%; margin-right: auto; margin-left: auto;">
+                <table id="contacts" class="table table-hover">
+                    <!-- rendering row items with custom data attributes i.e. fname, lname & mob using json data-->
+                    % for row in data:
+                        <tr data-fname='${row["fname"]}' data-lname='${row["lname"]}' data-mob='${row["mob"]}'>
+                            <td>
+                                ${row["fname"]} ${row["lname"]}
+                            </td>
+                        </tr>
+                    % endfor
+                </table>
+            </div>
+        </div>
+	</body>
+</html>

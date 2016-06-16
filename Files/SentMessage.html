@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Sent Message</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Contacts App</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Contacts List</a></li>
+                    <li class="active"><a href="/MessageHistory">Message History</a></li>
+                </ul>
+            </div>
+        </nav>
+    <div class="container">
+        <h1 align="center">Message History</h1>
+        <!-- table to display messages sent to mobile number with OTP -->
+        <div align="center" style="width: 20%; margin-right: auto; margin-left: auto;">
+            <!-- check for data to display in table if there are some entries then display table else display plain text for no data -->
+            % if data and len(data) > 0:
+
+            <table id="contacts" class="table table-hover">
+                <tr>
+                    <th>Mobile No.</th>
+                    <th>OTP</th>
+                    <th>Time</th>
+                </tr>
+                % for row in data:
+                    <tr>
+                        <td>${row["mob"]}</td>
+                        <td>${row["otp"]}</td>
+                        <td>${row["time"]}</td>
+                    </tr>
+                % endfor
+            </table>
+            % else:
+            <h4>no messages sent</h4>
+            % endif
+        </div>
+    </div>
+</body>
+</html>
